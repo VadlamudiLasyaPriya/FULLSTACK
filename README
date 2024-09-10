@@ -1,0 +1,27 @@
+HTML Structure:
+
+Header: Contains the title of the system and a search bar for inputting city names.
+Main:
+Overview Section: Displays the current weather (temperature, humidity, wind speed, and location).
+Map Section: Displays the map using Leaflet.js based on the latitude and longitude of the input city.
+CSS Styling:
+
+Simple layout with a green header and styled weather info sections.
+The map and weather information are centrally aligned with a responsive design that adjusts for mobile screens.
+JavaScript:
+
+Fetches weather data using the OpenWeatherMap API.
+Displays the weather data on the page.
+Uses Leaflet.js to display a map based on the geographical coordinates of the fetched city.
+You can search for any city, and it will display its weather and map.
+Notes:
+Replace apiKey in the JavaScript code with your OpenWeatherMap API key.
+You can extend the system by adding more features like weekly forecasts, air quality data, etc.
+This is a clean and simple setup for an environment monitoring system without using any Bootstrap concepts. Let me know if you need more features or improvements!
+
+
+
+
+
+
+
