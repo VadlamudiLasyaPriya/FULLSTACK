@@ -1,0 +1,40 @@
+const apiKey = '4f944c0231428c0ac6ebf79e36eba04d';
+
+document.getElementById('searchBtn').addEventListener('click', () => {
+  const city = document.getElementById('city').value;
+  if (city) {
+    fetchWeatherData(city);
+  }
+});
+
+function fetchWeatherData(city) {
+  const weatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+  fetch(weatherURL)
+    .then(response => response.json())
+    .then(data => {
+      displayWeatherData(data);
+      updateMap(data.coord.lat, data.coord.lon);
+    })
+    .catch(error => {
+      console.log("Error:", error);
+    });
+}
+
+function displayWeatherData(data) {
+  document.getElementById('location').textContent = `Location: ${data.name}`;
+  document.getElementById('temperature').textContent = data.main.temp;
+  document.getElementById('humidity').textContent = data.main.humidity;
+  document.getElementById('wind').textContent = data.wind.speed;
+}
+
+function updateMap(lat, lon) {
+  const map = L.map('weatherMap').setView([lat, lon], 10);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+
+  L.marker([lat, lon]).addTo(map)
+    .bindPopup('Current Location')
+    .openPopup();
+}
